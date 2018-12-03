@@ -33,7 +33,8 @@ public class SQLServerTestController {
     @ResponseBody
     @RequestMapping("/test")
     public String showIndex1() {
-        return "jifdasj";
+
+        return "i="+userService.test();
     }
 
 }

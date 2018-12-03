@@ -24,6 +24,7 @@ public class SqlServerTestUserServiceImpl implements SqlServerTestUserService {
     private TestUserDao testUserDao;
     @Autowired
     private SqlserveruserDao sqlserveruserDao;
+    private int i = 0;//测试该类是否只创建一次，发现是只创建一次
 
     public List<TestUser> userList() {
         // 手动指定切换到数据源，切换到SQLServer数据库
@@ -43,5 +44,11 @@ public class SqlServerTestUserServiceImpl implements SqlServerTestUserService {
         System.out.println("userList="+userList);
 
         return userList;
+    }
+
+    @Override//测试该类是否只创建一次，发现是只创建一次
+    public int test() {
+        i++;
+        return i;
     }
 }

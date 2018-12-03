@@ -2,6 +2,7 @@ package com.wnf.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.wnf.entity.User;
+import com.wnf.service.SqlServerTestUserService;
 import com.wnf.service.UserService;
 import com.wnf.utils.MyThrowException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class MySqlUserController {
     //注入Service实现类依赖，可注入多个Service依赖
     @Autowired
     private UserService userService;
+    @Autowired
+    private SqlServerTestUserService sqlServerTestUserService;
 
     @ResponseBody//将返回的数据处理为json
     @RequestMapping(value = "/user/add")
@@ -90,5 +93,12 @@ public class MySqlUserController {
 //        user.getAddress();
 //        Integer.parseInt("dsfa");
         return userService.addUser(user);
+    }
+
+    @ResponseBody
+    @RequestMapping("/test2")
+    public String showIndex1() {
+
+        return "i="+sqlServerTestUserService.test();
     }
 }

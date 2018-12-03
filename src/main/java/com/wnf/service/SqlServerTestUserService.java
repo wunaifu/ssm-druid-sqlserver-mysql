@@ -9,4 +9,6 @@ import java.util.List;
 public interface SqlServerTestUserService {
     List<TestUser> userList();
     List<Sqlserveruser> userListP();
+
+    int test();
 }
