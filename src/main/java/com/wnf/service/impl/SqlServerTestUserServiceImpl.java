@@ -1,7 +1,12 @@
 package com.wnf.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.wnf.dao.SqlserveruserDao;
 import com.wnf.dao.TestUserDao;
 import com.wnf.datasource.DynamicDataSourceHolder;
+import com.wnf.entity.Sqlserveruser;
+import com.wnf.entity.SqlserveruserExample;
 import com.wnf.entity.TestUser;
 import com.wnf.service.SqlServerTestUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +22,26 @@ public class SqlServerTestUserServiceImpl implements SqlServerTestUserService {
 
     @Autowired
     private TestUserDao testUserDao;
+    @Autowired
+    private SqlserveruserDao sqlserveruserDao;
 
     public List<TestUser> userList() {
         // 手动指定切换到数据源，切换到SQLServer数据库
         DynamicDataSourceHolder.setDataSource("dataSource1");
         List<TestUser> userList = testUserDao.queryAll();
+        return userList;
+    }
+
+    @Override
+    public List<Sqlserveruser> userListP() {
+        // 手动指定切换到数据源，切换到SQLServer数据库
+        DynamicDataSourceHolder.setDataSource("dataSource1");
+
+        SqlserveruserExample userExample = new SqlserveruserExample();
+        userExample.setOrderByClause("name desc");
+        List<Sqlserveruser> userList = sqlserveruserDao.selectByExample(userExample);
+        System.out.println("userList="+userList);
+
         return userList;
     }
 }

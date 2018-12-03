@@ -1,5 +1,7 @@
 package com.wnf.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.wnf.entity.Sqlserveruser;
 import com.wnf.entity.TestUser;
 import com.wnf.service.SqlServerTestUserService;
 import com.wnf.service.UserService;
@@ -20,6 +22,12 @@ public class SQLServerTestController {
     @RequestMapping("/list")
     public List<TestUser> showIndex() {
         return userService.userList();
+    }
+
+    @ResponseBody
+    @RequestMapping("/listP")
+    public List<Sqlserveruser> listP() {
+        return userService.userListP();
     }
 
     @ResponseBody
