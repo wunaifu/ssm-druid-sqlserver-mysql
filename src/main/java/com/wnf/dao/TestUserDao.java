@@ -1,6 +1,7 @@
 package com.wnf.dao;
 
 
+import com.wnf.entity.Sqlserveruser;
 import com.wnf.entity.TestUser;
 
 import java.util.List;
@@ -11,6 +12,8 @@ import java.util.List;
 public interface TestUserDao {
 
     List<TestUser> queryAll();
+
+    int insert(Sqlserveruser record);
 
 
 }

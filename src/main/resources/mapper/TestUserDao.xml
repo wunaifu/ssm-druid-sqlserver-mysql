@@ -6,7 +6,11 @@
     <!--目的:为dao接口方法提供sql语句配置-->
 
     <select id="queryAll" resultType="com.wnf.entity.TestUser">
-      SELECT * FROM testuser
+      SELECT * FROM sqlserveruser
     </select>
+
+    <insert id="insert" parameterType="com.wnf.entity.Sqlserveruser" >
+    insert into sqlserveruser (id, name, address) values (#{id}, #{name}, #{address})
+  </insert>
 
 </mapper>

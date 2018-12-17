@@ -9,7 +9,7 @@
     <!--1.配置数据库相关参数properties的属性：${url} 在resource下创建数据库配置文件jdbc.properties&ndash;&gt;-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <!--创建数据源1，连接SqlServer数据库db1 -->
-    <bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <bean id="dataSourceSqlServer" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 数据库驱动 -->
         <property name="driverClassName" value="${jdbc.driver}" />
         <!-- 基本属性 url、user、password -->
@@ -46,7 +46,7 @@
         <!--<property name="filters" value="stat" />-->
     </bean>
     <!--创建数据源2，连接MySql数据库db2 -->
-    <bean id="dataSource2" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+    <bean id="dataSourceMySql" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 数据库驱动 -->
         <property name="driverClassName" value="${jdbc.mysqlDriver}" />
         <!-- 基本属性 url、user、password -->
@@ -89,12 +89,12 @@
              <property name="targetDataSources">
                  <map key-type="java.lang.String">
                      <!-- 指定lookupKey和与之对应的数据源 -->
-                     <entry key="dataSource1" value-ref="dataSource1"></entry>
-                     <entry key="dataSource2" value-ref="dataSource2"></entry>
+                     <entry key="dataSourceSqlServer" value-ref="dataSourceSqlServer"></entry>
+                     <entry key="dataSourceMySql" value-ref="dataSourceMySql"></entry>
                  </map>
              </property>
              <!-- 这里可以指定默认的数据源 -->
-             <property name="defaultTargetDataSource" ref="dataSource2" />
+             <property name="defaultTargetDataSource" ref="dataSourceSqlServer" />
     </bean>
 <!--****************************************************** 使用 druid 配置SQLServer end  ******************************************************-->
 
